@@ -83,6 +83,9 @@ Quick Check: If you can see your icon next to the url bar, then you are logged i
 
 It uses selenium, selenium can automate web browsers and this project uses it to get the youtube subscriptions because it is a list, which needs javascript to get loaded (&rsquo;infinity pages&rsquo;).
 
+It calls the [https://www.youtube.com/feed/channels?app=desktop](https://www.youtube.com/feed/channels?app=desktop)
+site, scrolls down to get all subscriptions. Scrape the website and creates the json file which can imported to [NewPipe](https://github.com/TeamNewPipe/NewPipe)
+
 
 <a id="org59429c4"></a>
 
