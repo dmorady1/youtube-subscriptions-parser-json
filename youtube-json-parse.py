@@ -13,42 +13,41 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from chromedriver_py import binary_path
 
-def str2bool(v):
-    if isinstance(v, bool):
-       return v
-    if v.lower() in ('yes', 'true', 't', 'y', '1'):
-        return True
-    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
-        return False
-    else:
-        raise argparse.ArgumentTypeError('Boolean value expected.')
-
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--no-email-and-pw',action='store_true')
+    parser.add_argument('--lazy',action='store_true')
 
-    email = input('Enter your email: ')
-    password = getpass('Enter your password: ')
 
     config = parser.parse_args()
 
+    email = None
+    password = None
+    if config.lazy:
+        email = input('Enter your email: ')
+        password = getpass('Enter your password: ')
 
     driver = webdriver.Chrome(executable_path=binary_path)
-    # driver = webdriver.Chrome('./chromedriver')
-    # if config.headless: # headless does not work
-    #     chrome_options = Options()
-    #     chrome_options.add_argument("--headless")
-    #     driver = webdriver.Chrome('./chromedriver', options=chrome_options)
+    # driver = webdriver.Chrome('./chromedriver') # local driver
 
 
-    driver.get("https://accounts.google.com/o/oauth2/auth/identifier?operation=login&state=google-%7Chttps%3A%2F%2Fmedium.com%2F%3Fsource%3Dlogin--------------------------lo_home_nav-----------%7Clogin&access_type=online&client_id=216296035834-k1k6qe060s2tp2a2jam4ljdcms00sttg.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fmedium.com%2Fm%2Fcallback%2Fgoogle&response_type=id_token%20token&scope=email%20openid%20profile&nonce=e3201beff5c040ce49e1db2009ebdc7db746a9b2f21b99e9f674f1a9151a328e&flowName=GeneralOAuthFlow")
-    sleep(5)
-    driver.find_element_by_css_selector("#identifierId").send_keys(f'{email}\n')
+    if config.lazy:
+        url = "https://accounts.google.com/o/oauth2/auth/identifier?operation=login&state=google-%7Chttps%3A%2F%2Fmedium.com%2F%3Fsource%3Dlogin--------------------------lo_home_nav-----------%7Clogin&access_type=online&client_id=216296035834-k1k6qe060s2tp2a2jam4ljdcms00sttg.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fmedium.com%2Fm%2Fcallback%2Fgoogle&response_type=id_token%20token&scope=email%20openid%20profile&nonce=e3201beff5c040ce49e1db2009ebdc7db746a9b2f21b99e9f674f1a9151a328e&flowName=GeneralOAuthFlow"
+        driver.get(url)
+        sleep(5)
+        driver.find_element_by_css_selector("#identifierId").send_keys(f'{email}\n')
 
-    driver.implicitly_wait(1)
-    sleep(5)
+        driver.implicitly_wait(1)
+        sleep(5)
 
-    driver.find_element_by_css_selector("#password > div.aCsJod.oJeWuf > div > div.Xb9hP > input").send_keys(f'{password}'+'\n')
+        driver.find_element_by_css_selector("#password > div.aCsJod.oJeWuf > div > div.Xb9hP > input").send_keys(f'{password}'+'\n')
+    if not config.lazy:
+        print('1. Go to https://medium.com/')
+        print('2. Click on Sign In')
+        print('3. Sign In with Google')
+        print('Even if the message "Sorry, we didn’t recognize that account." comes,\n you are logged in.')
+        print('Quick Check: If you can see your icon next to the url bar, then you are logged in\n')
+        print('----------')
+        input('Press enter if you are logged into google')
     driver.get('https://www.youtube.com/feed/channels?app=desktop')
     sleep(2)
     driver.refresh()
@@ -102,4 +101,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-# print(json.dumps(new_pipe_text))
