@@ -1,0 +1,72 @@
+#+TITLE: Youtube Subscriptions Extractor to JSON for NewPipe
+
+* Description
+This script extract your youtube subscriptions and parse it into a json. The json-format is adapt to work with the NewPipe application https://github.com/TeamNewPipe/NewPipe
+
+* Installation and Usage
+1. Clone the repo
+
+2. ~cd~ into the cloned repo
+
+3. Install and change into python virtual environment
+   #+begin_src bash
+    source ./install.sh
+   #+end_src
+
+
+ Usage
+5. Usage
+   **
+   2 Options first by going manually to ~medium.com~ and sign into google.
+   1. Go to https://medium.com/
+   2. Click on Sign In
+   3. Sign In with Google
+   Even if the message "Sorry, we didn’t recognize that account." comes,
+   you are logged in.
+   Quick Check: If you can see your icon next to the url bar, then you are logged in
+* Usage
+There are two options.
+
+** Log into google manually
+   1. start the program by ~python youtube-json-parse.py~
+   2. Go to https://medium.com/
+   3. Click on Sign In
+   4. Sign In with Google
+   Even if the message "Sorry, we didn’t recognize that account." comes,
+   you are logged in.
+   Quick Check: If you can see your icon next to the url bar, then you are logged in
+** Use the ~--lazy~ option
+1. start the program by ~python youtube-json-parse.py --lazy~
+2. The program ask you for your email address
+    and your password, the password is not displayed in the command line. And is *not* *stored* or used in a bad manner, just to log you in. If you are scared, you can use the manual option and check the source code.
+
+
+* How does it work?
+It uses selenium, selenium can automate web browsers and this project uses it to get the youtube subscriptions because it is a list, which needs javascript to get loaded ('infinity pages').
+* FAQ
+** Why do I need to sign in to google over ~medium.com~ ?
+Answer: Because google does not allow to log into your account with selenium immediately.
+
+* License
+
+MIT License
+
+Copyright (c) 2020 dmorady1
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
