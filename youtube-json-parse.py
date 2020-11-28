@@ -80,6 +80,7 @@ def main():
     json.dump(new_pipe_text, out_file, indent = 4, ensure_ascii = True)
 
     out_file.close()
+    print('--------Success------------')
     print('subscriptions.json was created.')
 
 if __name__ == "__main__":
