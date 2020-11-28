@@ -1,7 +1,7 @@
 #+TITLE: Youtube Subscriptions Extractor to JSON for NewPipe
 
 * Description
-This script extract your youtube subscriptions and parse it into a json. The json-format is adapt to work with the NewPipe application https://github.com/TeamNewPipe/NewPipe
+This script extract your youtube subscriptions and parse it into a json. The json-format is adapted to work with the NewPipe application https://github.com/TeamNewPipe/NewPipe
 
 * Installation and Usage
 1. Clone the repo
@@ -13,39 +13,38 @@ This script extract your youtube subscriptions and parse it into a json. The jso
     source ./install.sh
    #+end_src
 
+   if you want to exit the virtual environment just type:
+   #+begin_src bash
+    exit
+   #+end_src
 
- Usage
-5. Usage
-   **
-   2 Options first by going manually to ~medium.com~ and sign into google.
-   1. Go to https://medium.com/
-   2. Click on Sign In
-   3. Sign In with Google
-   Even if the message "Sorry, we didn’t recognize that account." comes,
-   you are logged in.
-   Quick Check: If you can see your icon next to the url bar, then you are logged in
 * Usage
-There are two options.
+If it does not scroll down to all your subscriber add the ~--scroll~ option and
+choose a value bigger than the default option ~100~ like
 
+#+begin_src bash
+    python youtube-json-parse.py --scroll 200
+#+end_src
 ** Log into google manually
-   1. start the program by ~python youtube-json-parse.py~
-   2. Go to https://medium.com/
+   1. start the program by
+      #+begin_src bash
+        python youtube-json-parse.py
+      #+end_src
+   2. Go to https://medium.com/ , why medium not Google? see [[FAQ]]
    3. Click on Sign In
    4. Sign In with Google
-   Even if the message "Sorry, we didn’t recognize that account." comes,
+   Even if the message ~"Sorry, we didn’t recognize that account."~ comes,
    you are logged in.
    Quick Check: If you can see your icon next to the url bar, then you are logged in
-** Use the ~--lazy~ option
-1. start the program by ~python youtube-json-parse.py --lazy~
-2. The program ask you for your email address
-    and your password, the password is not displayed in the command line. And is *not* *stored* or used in a bad manner, just to log you in. If you are scared, you can use the manual option and check the source code.
+
+
 
 
 * How does it work?
 It uses selenium, selenium can automate web browsers and this project uses it to get the youtube subscriptions because it is a list, which needs javascript to get loaded ('infinity pages').
 * FAQ
 ** Why do I need to sign in to google over ~medium.com~ ?
-Answer: Because google does not allow to log into your account with selenium immediately.
+Answer: Because google does not allow to log into your account with selenium directly through googles 'sign up' site.
 
 * License
 
