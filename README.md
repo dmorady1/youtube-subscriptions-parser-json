@@ -2,14 +2,16 @@
 # Table of Contents
 
 1.  [Description](#org4b2e7d6)
-2.  [Installation and Usage](#org8d75d1c)
+2.  [Installation](#org8d75d1c)
 3.  [Usage](#org210bb27)
     1.  [Log into google manually](#org2f857ce)
-4.  [How does it work?](#org74bf8b7)
-5.  [FAQ](#org59429c4)
+4.  [Requirements](#org77)
+5.  [How does it work?](#org74bf8b7)
+6.  [FAQ](#org59429c4)
     1.  [Why do I need to sign in to google over `medium.com` ?](#org985e7f2)
-6.  [License](#org73af18b)
 
+    2.  [Why do I need to log in manually?](#org99)
+7.  [License](#org73af18b)
 
 
 <a id="org4b2e7d6"></a>
@@ -21,7 +23,7 @@ This script extract your youtube subscriptions and parse it into a json. The jso
 
 <a id="org8d75d1c"></a>
 
-# Installation and Usage
+# Installation
 
 1.  Clone the repo
 
@@ -77,7 +79,13 @@ Quick Check: If you can see your icon next to the url bar, then you are logged i
 
 7. A file `subscriptions.json` was created which can be used on [NewPipe](https://github.com/TeamNewPipe/NewPipe)
 
-<a id="org74bf8b7"></a>
+<a id="org77"></a>
+
+# Requirements
+
+Only python3 is required
+
+Works on GNU/Linux but it should work on Mac and Windows as well.
 
 # How does it work?
 
@@ -99,8 +107,15 @@ site, scrolls down to get all subscriptions. Scrape the website and creates the 
 Answer: Because google does not allow to log into your account with selenium directly through googles &rsquo;sign up&rsquo; site.
 
 
-## Why do I need to go to medium.com on my own and log in?
-Answer: Because I **don't** want to store your password in a variable and it might feel less safe to use. I considered to use a `--lazy` option but before I receive any complaints, I dropped it. So the only option is to log into google on your own through medium.
+
+<a id="org99"></a>
+
+## Why do I need to log in manually?
+Answer: Because I **don't** want to store your password in a variable. It could
+feel less secure and vulnerable. I considered to use a `--lazy` option but before
+I receive any complaints, I dropped it. So the only option is to log into google
+on your own, through medium.
+
 <a id="org73af18b"></a>
 
 # License
