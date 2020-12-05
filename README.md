@@ -37,6 +37,8 @@ This script extract your youtube subscriptions and parse it into a json. The jso
     
         exit
 
+    ## For Windows user
+    Read more [here](./windows.md)
 
 <a id="org210bb27"></a>
 
