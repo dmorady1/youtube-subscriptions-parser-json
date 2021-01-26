@@ -12,23 +12,43 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from chromedriver_py import binary_path
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.utils import ChromeType
 import os
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--scroll", default="100", type=int)
+    parser.add_argument("--scroll", default="250", type=int)
 
     config = parser.parse_args()
     driver = None
     if os.name == "nt":
-        chrome_options = Options()
-        chrome_options.binary_location = (
-            "C:\Program Files\Google\Chrome\Application\chrome.exe"
-        )
-        driver = webdriver.Chrome(chrome_options=chrome_options)
+        try:
+            driver = webdriver.Chrome(ChromeDriverManager().install())
+        except Exception:
+            driver = None
+
+        if driver is None:
+            try:
+                driver = webdriver.Chrome(
+                    ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
+                )
+            except Exception:
+                driver = None
     else:
-        driver = webdriver.Chrome(executable_path=binary_path)
+        try:
+            driver = webdriver.Chrome(ChromeDriverManager().install())
+        except Exception:
+            driver = None
+
+        if driver is None:
+            try:
+                driver = webdriver.Chrome(
+                    ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
+                )
+            except Exception:
+                driver = None
 
     if driver is None:
         print(
